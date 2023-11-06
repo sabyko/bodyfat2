@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "koerperfettanteil": {
+    "bodyfat": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -77,15 +77,15 @@
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "browserTarget": "koerperfettanteil:build:development",
+            "browserTarget": "bodyfat:build:development",
             "port": 4200
           },
           "configurations": {
             "production": {
-              "browserTarget": "koerperfettanteil:build:production"
+              "browserTarget": "bodyfat:build:production"
             },
             "development": {
-              "browserTarget": "koerperfettanteil:build:development"
+              "browserTarget": "bodyfat:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -105,6 +105,7 @@
       "path": "./target/angular/",
       "environment": "all"
     },
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": false
   }
 }

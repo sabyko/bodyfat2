@@ -1,0 +1,185 @@
+<div>
+  <h2 id="page-heading" data-cy="KoerperfettHeading">
+    <span jhiTranslate="bodyfatApp.koerperfett.home.title">Koerperfetts</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="bodyfatApp.koerperfett.home.refreshListLabel">Liste aktualisieren</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-koerperfett"
+        [routerLink]="['/koerperfett/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="bodyfatApp.koerperfett.home.createLabel"> Koerperfett erstellen </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="koerperfetts?.length === 0">
+    <span jhiTranslate="bodyfatApp.koerperfett.home.notFound">Keine Koerperfetts gefunden</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="koerperfetts && koerperfetts.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="privatoderfirma">
+            <div class="d-flex">
+              <span jhiTranslate="bodyfatApp.koerperfett.privatoderfirma">Privatoderfirma</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="koerpergroesse">
+            <div class="d-flex">
+              <span jhiTranslate="bodyfatApp.koerperfett.koerpergroesse">Koerpergroesse</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nackenumfang">
+            <div class="d-flex">
+              <span jhiTranslate="bodyfatApp.koerperfett.nackenumfang">Nackenumfang</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="bauchumfang">
+            <div class="d-flex">
+              <span jhiTranslate="bodyfatApp.koerperfett.bauchumfang">Bauchumfang</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="hueftumfang">
+            <div class="d-flex">
+              <span jhiTranslate="bodyfatApp.koerperfett.hueftumfang">Hueftumfang</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="geschlecht">
+            <div class="d-flex">
+              <span jhiTranslate="bodyfatApp.koerperfett.geschlecht">Geschlecht</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="age">
+            <div class="d-flex">
+              <span jhiTranslate="bodyfatApp.koerperfett.age">Age</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="koerperfettanteil">
+            <div class="d-flex">
+              <span jhiTranslate="bodyfatApp.koerperfett.koerperfettanteil">Koerperfettanteil</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="datumundZeit">
+            <div class="d-flex">
+              <span jhiTranslate="bodyfatApp.koerperfett.datumundZeit">Datumund Zeit</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="url">
+            <div class="d-flex">
+              <span jhiTranslate="bodyfatApp.koerperfett.url">Url</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="success">
+            <div class="d-flex">
+              <span jhiTranslate="bodyfatApp.koerperfett.success">Success</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="errorMessage">
+            <div class="d-flex">
+              <span jhiTranslate="bodyfatApp.koerperfett.errorMessage">Error Message</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let koerperfett of koerperfetts; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/koerperfett', koerperfett.id, 'view']">{{ koerperfett.id }}</a>
+          </td>
+          <td>{{ koerperfett.privatoderfirma }}</td>
+          <td>{{ koerperfett.koerpergroesse }}</td>
+          <td>{{ koerperfett.nackenumfang }}</td>
+          <td>{{ koerperfett.bauchumfang }}</td>
+          <td>{{ koerperfett.hueftumfang }}</td>
+          <td>{{ koerperfett.geschlecht }}</td>
+          <td>{{ koerperfett.age }}</td>
+          <td>{{ koerperfett.koerperfettanteil }}</td>
+          <td>{{ koerperfett.datumundZeit | formatMediumDatetime }}</td>
+          <td>{{ koerperfett.url }}</td>
+          <td>{{ koerperfett.success }}</td>
+          <td>{{ koerperfett.errorMessage }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/koerperfett', koerperfett.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Details</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/koerperfett', koerperfett.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Bearbeiten</span>
+              </button>
+
+              <button type="submit" (click)="delete(koerperfett)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Löschen</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="koerperfetts && koerperfetts.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

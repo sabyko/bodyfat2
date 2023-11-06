@@ -1,0 +1,35 @@
+{
+  "bodyfatApp": {
+    "koerperfett": {
+      "home": {
+        "title": "Koerperfetts",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Creeare o nouă entitate Koerperfett",
+        "createOrEditLabel": "Creeare sau editare Koerperfett",
+        "notFound": "No Koerperfetts found"
+      },
+      "created": "A fost creată o nouă entitate Koerperfett cu identificatorul {{ param }}",
+      "updated": "Koerperfett cu identificatorul {{ param }} a fost actualizată",
+      "deleted": "Koerperfett cu identificatorul {{ param }} a fost ștearsă",
+      "delete": {
+        "question": "Sunteți sigur că doriți să ștergeți Koerperfett {{ id }}?"
+      },
+      "detail": {
+        "title": "Koerperfett"
+      },
+      "id": "ID",
+      "privatoderfirma": "Privatoderfirma",
+      "koerpergroesse": "Koerpergroesse",
+      "nackenumfang": "Nackenumfang",
+      "bauchumfang": "Bauchumfang",
+      "hueftumfang": "Hueftumfang",
+      "geschlecht": "Geschlecht",
+      "age": "Age",
+      "koerperfettanteil": "Koerperfettanteil",
+      "datumundZeit": "Datumund Zeit",
+      "url": "Url",
+      "success": "Success",
+      "errorMessage": "Error Message"
+    }
+  }
+}

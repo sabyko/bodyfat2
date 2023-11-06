@@ -1,0 +1,35 @@
+{
+  "bodyfatApp": {
+    "koerperfett": {
+      "home": {
+        "title": "Koerperfetts",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Koerperfett erstellen",
+        "createOrEditLabel": "Koerperfett erstellen oder bearbeiten",
+        "notFound": "Keine Koerperfetts gefunden"
+      },
+      "created": "Koerperfett erstellt mit ID {{ param }}",
+      "updated": "Koerperfett aktualisiert mit ID {{ param }}",
+      "deleted": "Koerperfett gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Koerperfett {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Koerperfett"
+      },
+      "id": "ID",
+      "privatoderfirma": "Privatoderfirma",
+      "koerpergroesse": "Koerpergroesse",
+      "nackenumfang": "Nackenumfang",
+      "bauchumfang": "Bauchumfang",
+      "hueftumfang": "Hueftumfang",
+      "geschlecht": "Geschlecht",
+      "age": "Age",
+      "koerperfettanteil": "Koerperfettanteil",
+      "datumundZeit": "Datumund Zeit",
+      "url": "Url",
+      "success": "Success",
+      "errorMessage": "Error Message"
+    }
+  }
+}

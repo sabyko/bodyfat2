@@ -1,0 +1,27 @@
+{
+  "bodyfatApp": {
+    "koerperfettAvarage": {
+      "home": {
+        "title": "Koerperfett Avarages",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Koerperfett Avarage erstellen",
+        "createOrEditLabel": "Koerperfett Avarage erstellen oder bearbeiten",
+        "notFound": "Keine Koerperfett Avarages gefunden"
+      },
+      "created": "Koerperfett Avarage erstellt mit ID {{ param }}",
+      "updated": "Koerperfett Avarage aktualisiert mit ID {{ param }}",
+      "deleted": "Koerperfett Avarage gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Koerperfett Avarage {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Koerperfett Avarage"
+      },
+      "id": "ID",
+      "geschlecht": "Geschlecht",
+      "alter": "Alter",
+      "koerperfettanteil": "Koerperfettanteil",
+      "datumundZeit": "Datumund Zeit"
+    }
+  }
+}

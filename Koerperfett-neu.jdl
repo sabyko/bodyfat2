@@ -1,0 +1,23 @@
+entity Koerperfett {
+
+  privatoderfirma Boolean required,
+  
+  koerpergroesse Integer required,
+  nackenumfang Integer required,
+  bauchumfang Integer required,
+  hueftumfang Integer, 
+  geschlecht String required,
+  age Integer required,
+  koerperfettanteil Double,
+  
+  DatumundZeit Instant,
+  
+  url String,
+  success Boolean,
+  errorMessage String
+  
+}
+
+service all with serviceImpl
+paginate all with pagination
+filter all

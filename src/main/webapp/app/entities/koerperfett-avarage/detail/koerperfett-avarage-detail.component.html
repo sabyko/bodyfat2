@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="koerperfettAvarage">
+      <h2 data-cy="koerperfettAvarageDetailsHeading">
+        <span jhiTranslate="bodyfatApp.koerperfettAvarage.detail.title">Koerperfett Avarage</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ koerperfettAvarage.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="bodyfatApp.koerperfettAvarage.geschlecht">Geschlecht</span></dt>
+        <dd>
+          <span>{{ koerperfettAvarage.geschlecht }}</span>
+        </dd>
+        <dt><span jhiTranslate="bodyfatApp.koerperfettAvarage.alter">Alter</span></dt>
+        <dd>
+          <span>{{ koerperfettAvarage.alter }}</span>
+        </dd>
+        <dt><span jhiTranslate="bodyfatApp.koerperfettAvarage.koerperfettanteil">Koerperfettanteil</span></dt>
+        <dd>
+          <span>{{ koerperfettAvarage.koerperfettanteil }}</span>
+        </dd>
+        <dt><span jhiTranslate="bodyfatApp.koerperfettAvarage.datumundZeit">Datumund Zeit</span></dt>
+        <dd>
+          <span>{{ koerperfettAvarage.datumundZeit | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Zurück</span>
+      </button>
+
+      <button type="button" [routerLink]="['/koerperfett-avarage', koerperfettAvarage.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Bearbeiten</span>
+      </button>
+    </div>
+  </div>
+</div>

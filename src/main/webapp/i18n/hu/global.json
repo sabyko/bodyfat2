@@ -1,12 +1,14 @@
 {
   "global": {
-    "title": "Koerperfettanteil",
+    "title": "Bodyfat",
     "browsehappy": "Ön <strong>elavult</strong> böngészőt használ. Kérjük <a href=\"http://browsehappy.com/?locale=hu\">frissítse böngészőjét</a> hogy javuljon a felhasználói élménye.",
     "menu": {
       "home": "Kezdőpont",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entitások",
+        "koerperfett": "Koerperfett",
+        "koerperfettAvarage": "Koerperfett Avarage",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

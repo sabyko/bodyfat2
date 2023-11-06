@@ -1,0 +1,84 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-koerperfett-avarage-heading"
+        data-cy="KoerperfettAvarageCreateUpdateHeading"
+        jhiTranslate="bodyfatApp.koerperfettAvarage.home.createOrEditLabel"
+      >
+        Koerperfett Avarage erstellen oder bearbeiten
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="bodyfatApp.koerperfettAvarage.geschlecht" for="field_geschlecht">Geschlecht</label>
+          <input
+            type="text"
+            class="form-control"
+            name="geschlecht"
+            id="field_geschlecht"
+            data-cy="geschlecht"
+            formControlName="geschlecht"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="bodyfatApp.koerperfettAvarage.alter" for="field_alter">Alter</label>
+          <input type="number" class="form-control" name="alter" id="field_alter" data-cy="alter" formControlName="alter" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="bodyfatApp.koerperfettAvarage.koerperfettanteil" for="field_koerperfettanteil"
+            >Koerperfettanteil</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="koerperfettanteil"
+            id="field_koerperfettanteil"
+            data-cy="koerperfettanteil"
+            formControlName="koerperfettanteil"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="bodyfatApp.koerperfettAvarage.datumundZeit" for="field_datumundZeit">Datumund Zeit</label>
+          <div class="d-flex">
+            <input
+              id="field_datumundZeit"
+              data-cy="datumundZeit"
+              type="datetime-local"
+              class="form-control"
+              name="datumundZeit"
+              formControlName="datumundZeit"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Abbrechen</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Speichern</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

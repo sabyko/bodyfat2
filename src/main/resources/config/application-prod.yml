@@ -17,7 +17,7 @@ logging:
   level:
     ROOT: INFO
     tech.jhipster: INFO
-    de.projekt.koerperfettanteil: INFO
+    de.projekt.bodyfat: INFO
 
 management:
   metrics:
@@ -31,12 +31,34 @@ spring:
       enabled: false
     livereload:
       enabled: false
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/bodyfat?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+    username: root
+    password:
+    hikari:
+      poolName: Hikari
+      auto-commit: false
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+  jpa:
+  # Replace by 'prod, faker' to add the faker context and have sample data loaded in production
+  liquibase:
+    contexts: prod
+  mail:
+    host: localhost
+    port: 25
+    username:
+    password:
   thymeleaf:
     cache: true
 
 # ===================================================================
 # To enable TLS in production, generate a certificate using:
-# keytool -genkey -alias koerperfettanteil -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
+# keytool -genkey -alias bodyfat -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
 #
 # You can also use Let's Encrypt:
 # See details in topic "Create a Java Keystore (.JKS) from Let's Encrypt Certificates" on https://maximilian-boehm.com/en-gb/blog
@@ -83,10 +105,12 @@ jhipster:
         # - In the JHipster Registry (which includes a Spring Cloud Config server)
         # - In a separate `application-prod.yml` file, in the same folder as your executable JAR file
         # - In the `JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET` environment variable
-        base64-secret: NWM5YjczMmM4MTE2MTFkNzU2N2I4MWU1ZTY1Njg5YWQ1NjQ4OTJlNjc2MDM4NDZjYjcyZGNhZDc0ZWJjNzJlNGJiMTgyZTUxN2Y0MzU2MWJjZDcyNWY5YTExY2RhN2UwODE0MjgxOGU3ZTA3ZWViMGVkOWFmMzA3NDRhYzcwOWM=
+        base64-secret: ZDRlNjEzOGUzYWVlNGM0ZmQ5YTQxYWY5Zjc0MTJiYzA4NmM0MzY2YzFiODUzMWI2ZjZhMTFiNmQzZmVkNDNiMGY0ZjcyZTIwMjUwZTAxYmJiNTMwMDMyMDIyMjNjMTlmMmExNWIyYWI0YzEwN2ZmN2ViN2ZlMjY0YTI0MjlhMmE=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 2592000
+  mail: # specific JHipster mail property, for standard properties see MailProperties
+    base-url: http://my-server-url-to-change # Modify according to your server's URL
   logging:
     use-json-format: false # By default, logs are not in Json format
     logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration

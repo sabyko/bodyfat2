@@ -1,0 +1,27 @@
+{
+  "bodyfatApp": {
+    "koerperfettAvarage": {
+      "home": {
+        "title": "KoerperfettAvarages",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Egy új Koerperfett Avarage létrehozása",
+        "createOrEditLabel": "Hozzon létre, vagy módosítson Koerperfett Avaraget",
+        "notFound": "No Koerperfett Avarages found"
+      },
+      "created": "Egy új Koerperfett Avarage lett létrehozva {{ param }} azonosítóval",
+      "updated": "A Koerperfett Avarage módosítva lett {{ param }} azonosítóval",
+      "deleted": "A Koerperfett Avarage törölve lett {{ param }} azonosítóval",
+      "delete": {
+        "question": "Biztos benne, hogy törölni szeretné az Koerperfett Avaraget {{ id }} azonosítóval?"
+      },
+      "detail": {
+        "title": "Koerperfett Avarage"
+      },
+      "id": "ID",
+      "geschlecht": "Geschlecht",
+      "alter": "Alter",
+      "koerperfettanteil": "Koerperfettanteil",
+      "datumundZeit": "Datumund Zeit"
+    }
+  }
+}

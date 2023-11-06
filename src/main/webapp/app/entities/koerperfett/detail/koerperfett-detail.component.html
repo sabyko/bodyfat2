@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="koerperfett">
+      <h2 data-cy="koerperfettDetailsHeading"><span jhiTranslate="bodyfatApp.koerperfett.detail.title">Koerperfett</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ koerperfett.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="bodyfatApp.koerperfett.privatoderfirma">Privatoderfirma</span></dt>
+        <dd>
+          <span>{{ koerperfett.privatoderfirma }}</span>
+        </dd>
+        <dt><span jhiTranslate="bodyfatApp.koerperfett.koerpergroesse">Koerpergroesse</span></dt>
+        <dd>
+          <span>{{ koerperfett.koerpergroesse }}</span>
+        </dd>
+        <dt><span jhiTranslate="bodyfatApp.koerperfett.nackenumfang">Nackenumfang</span></dt>
+        <dd>
+          <span>{{ koerperfett.nackenumfang }}</span>
+        </dd>
+        <dt><span jhiTranslate="bodyfatApp.koerperfett.bauchumfang">Bauchumfang</span></dt>
+        <dd>
+          <span>{{ koerperfett.bauchumfang }}</span>
+        </dd>
+        <dt><span jhiTranslate="bodyfatApp.koerperfett.hueftumfang">Hueftumfang</span></dt>
+        <dd>
+          <span>{{ koerperfett.hueftumfang }}</span>
+        </dd>
+        <dt><span jhiTranslate="bodyfatApp.koerperfett.geschlecht">Geschlecht</span></dt>
+        <dd>
+          <span>{{ koerperfett.geschlecht }}</span>
+        </dd>
+        <dt><span jhiTranslate="bodyfatApp.koerperfett.age">Age</span></dt>
+        <dd>
+          <span>{{ koerperfett.age }}</span>
+        </dd>
+        <dt><span jhiTranslate="bodyfatApp.koerperfett.koerperfettanteil">Koerperfettanteil</span></dt>
+        <dd>
+          <span>{{ koerperfett.koerperfettanteil }}</span>
+        </dd>
+        <dt><span jhiTranslate="bodyfatApp.koerperfett.datumundZeit">Datumund Zeit</span></dt>
+        <dd>
+          <span>{{ koerperfett.datumundZeit | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="bodyfatApp.koerperfett.url">Url</span></dt>
+        <dd>
+          <span>{{ koerperfett.url }}</span>
+        </dd>
+        <dt><span jhiTranslate="bodyfatApp.koerperfett.success">Success</span></dt>
+        <dd>
+          <span>{{ koerperfett.success }}</span>
+        </dd>
+        <dt><span jhiTranslate="bodyfatApp.koerperfett.errorMessage">Error Message</span></dt>
+        <dd>
+          <span>{{ koerperfett.errorMessage }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Zurück</span>
+      </button>
+
+      <button type="button" [routerLink]="['/koerperfett', koerperfett.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Bearbeiten</span>
+      </button>
+    </div>
+  </div>
+</div>

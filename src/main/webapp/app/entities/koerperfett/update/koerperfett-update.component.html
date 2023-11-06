@@ -1,0 +1,253 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-koerperfett-heading"
+        data-cy="KoerperfettCreateUpdateHeading"
+        jhiTranslate="bodyfatApp.koerperfett.home.createOrEditLabel"
+      >
+        Koerperfett erstellen oder bearbeiten
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="bodyfatApp.koerperfett.privatoderfirma" for="field_privatoderfirma"
+            >Privatoderfirma</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="privatoderfirma"
+            id="field_privatoderfirma"
+            data-cy="privatoderfirma"
+            formControlName="privatoderfirma"
+          />
+          <div
+            *ngIf="
+              editForm.get('privatoderfirma')!.invalid &&
+              (editForm.get('privatoderfirma')!.dirty || editForm.get('privatoderfirma')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('privatoderfirma')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Dieses Feld wird benötigt.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="bodyfatApp.koerperfett.koerpergroesse" for="field_koerpergroesse">Koerpergroesse</label>
+          <input
+            type="number"
+            class="form-control"
+            name="koerpergroesse"
+            id="field_koerpergroesse"
+            data-cy="koerpergroesse"
+            formControlName="koerpergroesse"
+          />
+          <div
+            *ngIf="
+              editForm.get('koerpergroesse')!.invalid && (editForm.get('koerpergroesse')!.dirty || editForm.get('koerpergroesse')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('koerpergroesse')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Dieses Feld wird benötigt.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('koerpergroesse')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Dieses Feld muss eine Zahl sein.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="bodyfatApp.koerperfett.nackenumfang" for="field_nackenumfang">Nackenumfang</label>
+          <input
+            type="number"
+            class="form-control"
+            name="nackenumfang"
+            id="field_nackenumfang"
+            data-cy="nackenumfang"
+            formControlName="nackenumfang"
+          />
+          <div
+            *ngIf="editForm.get('nackenumfang')!.invalid && (editForm.get('nackenumfang')!.dirty || editForm.get('nackenumfang')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nackenumfang')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Dieses Feld wird benötigt.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('nackenumfang')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Dieses Feld muss eine Zahl sein.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="bodyfatApp.koerperfett.bauchumfang" for="field_bauchumfang">Bauchumfang</label>
+          <input
+            type="number"
+            class="form-control"
+            name="bauchumfang"
+            id="field_bauchumfang"
+            data-cy="bauchumfang"
+            formControlName="bauchumfang"
+          />
+          <div *ngIf="editForm.get('bauchumfang')!.invalid && (editForm.get('bauchumfang')!.dirty || editForm.get('bauchumfang')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('bauchumfang')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Dieses Feld wird benötigt.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('bauchumfang')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Dieses Feld muss eine Zahl sein.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="bodyfatApp.koerperfett.hueftumfang" for="field_hueftumfang">Hueftumfang</label>
+          <input
+            type="number"
+            class="form-control"
+            name="hueftumfang"
+            id="field_hueftumfang"
+            data-cy="hueftumfang"
+            formControlName="hueftumfang"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="bodyfatApp.koerperfett.geschlecht" for="field_geschlecht">Geschlecht</label>
+          <input
+            type="text"
+            class="form-control"
+            name="geschlecht"
+            id="field_geschlecht"
+            data-cy="geschlecht"
+            formControlName="geschlecht"
+          />
+          <div *ngIf="editForm.get('geschlecht')!.invalid && (editForm.get('geschlecht')!.dirty || editForm.get('geschlecht')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('geschlecht')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Dieses Feld wird benötigt.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="bodyfatApp.koerperfett.age" for="field_age">Age</label>
+          <input type="number" class="form-control" name="age" id="field_age" data-cy="age" formControlName="age" />
+          <div *ngIf="editForm.get('age')!.invalid && (editForm.get('age')!.dirty || editForm.get('age')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('age')?.errors?.required" jhiTranslate="entity.validation.required">
+              Dieses Feld wird benötigt.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('age')?.errors?.number" jhiTranslate="entity.validation.number">
+              Dieses Feld muss eine Zahl sein.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="bodyfatApp.koerperfett.koerperfettanteil" for="field_koerperfettanteil"
+            >Koerperfettanteil</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="koerperfettanteil"
+            id="field_koerperfettanteil"
+            data-cy="koerperfettanteil"
+            formControlName="koerperfettanteil"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="bodyfatApp.koerperfett.datumundZeit" for="field_datumundZeit">Datumund Zeit</label>
+          <div class="d-flex">
+            <input
+              id="field_datumundZeit"
+              data-cy="datumundZeit"
+              type="datetime-local"
+              class="form-control"
+              name="datumundZeit"
+              formControlName="datumundZeit"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="bodyfatApp.koerperfett.url" for="field_url">Url</label>
+          <input type="text" class="form-control" name="url" id="field_url" data-cy="url" formControlName="url" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="bodyfatApp.koerperfett.success" for="field_success">Success</label>
+          <input type="checkbox" class="form-check" name="success" id="field_success" data-cy="success" formControlName="success" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="bodyfatApp.koerperfett.errorMessage" for="field_errorMessage">Error Message</label>
+          <input
+            type="text"
+            class="form-control"
+            name="errorMessage"
+            id="field_errorMessage"
+            data-cy="errorMessage"
+            formControlName="errorMessage"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Abbrechen</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Speichern</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

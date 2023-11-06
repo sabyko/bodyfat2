@@ -15,7 +15,8 @@
       "mail": "Email",
       "livenessState": "Liveness state",
       "readinessState": "Readiness state",
-      "ping": "Application"
+      "ping": "Application",
+      "db": "Database"
     },
     "table": {
       "service": "Service name",

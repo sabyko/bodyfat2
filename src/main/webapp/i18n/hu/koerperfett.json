@@ -1,0 +1,35 @@
+{
+  "bodyfatApp": {
+    "koerperfett": {
+      "home": {
+        "title": "Koerperfetts",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Egy új Koerperfett létrehozása",
+        "createOrEditLabel": "Hozzon létre, vagy módosítson Koerperfettt",
+        "notFound": "No Koerperfetts found"
+      },
+      "created": "Egy új Koerperfett lett létrehozva {{ param }} azonosítóval",
+      "updated": "A Koerperfett módosítva lett {{ param }} azonosítóval",
+      "deleted": "A Koerperfett törölve lett {{ param }} azonosítóval",
+      "delete": {
+        "question": "Biztos benne, hogy törölni szeretné az Koerperfettt {{ id }} azonosítóval?"
+      },
+      "detail": {
+        "title": "Koerperfett"
+      },
+      "id": "ID",
+      "privatoderfirma": "Privatoderfirma",
+      "koerpergroesse": "Koerpergroesse",
+      "nackenumfang": "Nackenumfang",
+      "bauchumfang": "Bauchumfang",
+      "hueftumfang": "Hueftumfang",
+      "geschlecht": "Geschlecht",
+      "age": "Age",
+      "koerperfettanteil": "Koerperfettanteil",
+      "datumundZeit": "Datumund Zeit",
+      "url": "Url",
+      "success": "Success",
+      "errorMessage": "Error Message"
+    }
+  }
+}

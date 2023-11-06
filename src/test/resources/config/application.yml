@@ -15,7 +15,10 @@
 
 spring:
   application:
-    name: koerperfettanteil
+    name: bodyfat
+  # Replace by 'prod, faker' to add the faker context and have sample data loaded in production
+  liquibase:
+    contexts: test
   jackson:
     serialization:
       write-durations-as-timestamps: false
@@ -28,19 +31,15 @@ spring:
       matching-strategy: ant_path_matcher
   messages:
     basename: i18n/messages
-  security:
-    user:
-      name: test
-      password: test
   task:
     execution:
-      thread-name-prefix: koerperfettanteil-task-
+      thread-name-prefix: bodyfat-task-
       pool:
         core-size: 1
         max-size: 50
         queue-capacity: 10000
     scheduling:
-      thread-name-prefix: koerperfettanteil-scheduling-
+      thread-name-prefix: bodyfat-scheduling-
       pool:
         size: 20
   thymeleaf:
@@ -57,9 +56,9 @@ server:
 # ===================================================================
 jhipster:
   clientApp:
-    name: 'koerperfettanteilApp'
+    name: 'bodyfatApp'
   mail:
-    from: koerperfettanteil@localhost.com
+    from: bodyfat@localhost.com
     base-url: http://127.0.0.1:8080
   logging:
     # To test json console appender
@@ -73,7 +72,7 @@ jhipster:
     authentication:
       jwt:
         # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
-        base64-secret: NWM5YjczMmM4MTE2MTFkNzU2N2I4MWU1ZTY1Njg5YWQ1NjQ4OTJlNjc2MDM4NDZjYjcyZGNhZDc0ZWJjNzJlNGJiMTgyZTUxN2Y0MzU2MWJjZDcyNWY5YTExY2RhN2UwODE0MjgxOGU3ZTA3ZWViMGVkOWFmMzA3NDRhYzcwOWM=
+        base64-secret: ZDRlNjEzOGUzYWVlNGM0ZmQ5YTQxYWY5Zjc0MTJiYzA4NmM0MzY2YzFiODUzMWI2ZjZhMTFiNmQzZmVkNDNiMGY0ZjcyZTIwMjUwZTAxYmJiNTMwMDMyMDIyMjNjMTlmMmExNWIyYWI0YzEwN2ZmN2ViN2ZlMjY0YTI0MjlhMmE=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
 

@@ -1,0 +1,70 @@
+{
+  "applications": "*",
+  "changelogDate": "20231106171131",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "koerperfett",
+  "fields": [
+    {
+      "fieldName": "privatoderfirma",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "koerpergroesse",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nackenumfang",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "bauchumfang",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "hueftumfang",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "geschlecht",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "age",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "koerperfettanteil",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "datumundZeit",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "url",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "success",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "errorMessage",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Koerperfett",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,27 @@
+{
+  "bodyfatApp": {
+    "koerperfettAvarage": {
+      "home": {
+        "title": "Koerperfett Avarages",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Creeare o nouă entitate Koerperfett Avarage",
+        "createOrEditLabel": "Creeare sau editare Koerperfett Avarage",
+        "notFound": "No Koerperfett Avarages found"
+      },
+      "created": "A fost creată o nouă entitate Koerperfett Avarage cu identificatorul {{ param }}",
+      "updated": "Koerperfett Avarage cu identificatorul {{ param }} a fost actualizată",
+      "deleted": "Koerperfett Avarage cu identificatorul {{ param }} a fost ștearsă",
+      "delete": {
+        "question": "Sunteți sigur că doriți să ștergeți Koerperfett Avarage {{ id }}?"
+      },
+      "detail": {
+        "title": "Koerperfett Avarage"
+      },
+      "id": "ID",
+      "geschlecht": "Geschlecht",
+      "alter": "Alter",
+      "koerperfettanteil": "Koerperfettanteil",
+      "datumundZeit": "Datumund Zeit"
+    }
+  }
+}

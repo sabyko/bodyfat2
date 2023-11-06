@@ -1,0 +1,12 @@
+entity KoerperfettAvarage {
+
+  geschlecht String,
+  alter Integer,
+  koerperfettanteil Double,
+  DatumundZeit Instant,
+  
+}
+
+service all with serviceImpl
+paginate all with pagination
+filter all

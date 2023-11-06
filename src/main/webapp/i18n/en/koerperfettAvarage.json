@@ -1,0 +1,27 @@
+{
+  "bodyfatApp": {
+    "koerperfettAvarage": {
+      "home": {
+        "title": "Koerperfett Avarages",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Koerperfett Avarage",
+        "createOrEditLabel": "Create or edit a Koerperfett Avarage",
+        "notFound": "No Koerperfett Avarages found"
+      },
+      "created": "A new Koerperfett Avarage is created with identifier {{ param }}",
+      "updated": "A Koerperfett Avarage is updated with identifier {{ param }}",
+      "deleted": "A Koerperfett Avarage is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Koerperfett Avarage {{ id }}?"
+      },
+      "detail": {
+        "title": "Koerperfett Avarage"
+      },
+      "id": "ID",
+      "geschlecht": "Geschlecht",
+      "alter": "Alter",
+      "koerperfettanteil": "Koerperfettanteil",
+      "datumundZeit": "Datumund Zeit"
+    }
+  }
+}

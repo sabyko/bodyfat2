@@ -1,6 +1,6 @@
 {
   "global": {
-    "title": "Koerperfettanteil",
+    "title": "Bodyfat",
     "browsehappy": "Folosiți un browser <strong>vechi</strong>. Va rugăm <a href=\"http://browsehappy.com/?locale=en\"> să îl actualizați</a> pentru o experiență îmbunătațită.",
     "menu": {
       "home": "Acasă",
@@ -10,6 +10,8 @@
         "bankAccount": "ContBancar",
         "label": "Etichetă",
         "operation": "Operație",
+        "koerperfett": "Koerperfett",
+        "koerperfettAvarage": "Koerperfett Avarage",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

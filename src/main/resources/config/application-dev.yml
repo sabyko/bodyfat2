@@ -18,18 +18,39 @@ logging:
     ROOT: DEBUG
     tech.jhipster: DEBUG
     org.hibernate.SQL: DEBUG
-    de.projekt.koerperfettanteil: DEBUG
+    de.projekt.bodyfat: DEBUG
 
 spring:
   devtools:
     restart:
       enabled: true
-      additional-exclude: static/**
+      additional-exclude: static/**,.h2.server.properties
     livereload:
       enabled: false # we use Webpack dev server + BrowserSync for livereload
   jackson:
     serialization:
       indent-output: true
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:h2:file:./target/h2db/db/bodyfat;DB_CLOSE_DELAY=-1;MODE=LEGACY
+    username: bodyfat
+    password:
+    hikari:
+      poolName: Hikari
+      auto-commit: false
+  h2:
+    console:
+      # disable spring boot built-in h2-console since we start it manually with correct configuration
+      enabled: false
+  jpa:
+  liquibase:
+    # Remove 'faker' if you do not want the sample data to be loaded automatically
+    contexts: dev, faker
+  mail:
+    host: localhost
+    port: 25
+    username:
+    password:
   messages:
     cache-duration: PT1S # 1 second, see the ISO 8601 standard
   thymeleaf:
@@ -64,10 +85,12 @@ jhipster:
     authentication:
       jwt:
         # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
-        base64-secret: NWM5YjczMmM4MTE2MTFkNzU2N2I4MWU1ZTY1Njg5YWQ1NjQ4OTJlNjc2MDM4NDZjYjcyZGNhZDc0ZWJjNzJlNGJiMTgyZTUxN2Y0MzU2MWJjZDcyNWY5YTExY2RhN2UwODE0MjgxOGU3ZTA3ZWViMGVkOWFmMzA3NDRhYzcwOWM=
+        base64-secret: ZDRlNjEzOGUzYWVlNGM0ZmQ5YTQxYWY5Zjc0MTJiYzA4NmM0MzY2YzFiODUzMWI2ZjZhMTFiNmQzZmVkNDNiMGY0ZjcyZTIwMjUwZTAxYmJiNTMwMDMyMDIyMjNjMTlmMmExNWIyYWI0YzEwN2ZmN2ViN2ZlMjY0YTI0MjlhMmE=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 2592000
+  mail: # specific JHipster mail property, for standard properties see MailProperties
+    base-url: http://127.0.0.1:8080
   logging:
     use-json-format: false # By default, logs are not in Json format
     logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration

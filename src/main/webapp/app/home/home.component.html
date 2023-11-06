@@ -4,7 +4,7 @@
   </div>
 
   <div class="col-md-9">
-    <h1 class="display-4"><span jhiTranslate="home.title">Willkommen, Java Hipster!</span> (Koerperfettanteil)</h1>
+    <h1 class="display-4"><span jhiTranslate="home.title">Willkommen, Java Hipster!</span> (Bodyfat)</h1>
 
     <p class="lead" jhiTranslate="home.subtitle">Dies ist Ihre Hauptseite</p>
 
@@ -22,6 +22,11 @@
           möchten, versuchen Sie es mit <br />- Administrator (Name="admin" und Passwort="admin")<br />- Benutzer (Name="user" und
           Passwort="user").</span
         >
+      </div>
+
+      <div class="alert alert-warning" *ngSwitchCase="false">
+        <span jhiTranslate="global.messages.info.register.noaccount">Sie haben noch keinen Zugang?</span>&nbsp;
+        <a class="alert-link" routerLink="account/register" jhiTranslate="global.messages.info.register.link">Registrieren Sie sich</a>
       </div>
     </div>
 
