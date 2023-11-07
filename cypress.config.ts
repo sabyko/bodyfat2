@@ -10,6 +10,7 @@ export const defaultConfig = {
   viewportWidth: 1200,
   viewportHeight: 720,
   retries: 2,
+  projectId: 'a9bfg3',
   env: {
     authenticationUrl: '/api/authenticate',
     jwtStorageName: 'jhi-authenticationToken',
@@ -23,7 +24,6 @@ export const defaultConfig = {
     baseUrl: 'http://localhost:8080/',
     specPattern: 'src/test/javascript/cypress/e2e/**/*.cy.ts',
     supportFile: 'src/test/javascript/cypress/support/index.ts',
-    experimentalSessionAndOrigin: true,
   },
 };
 
