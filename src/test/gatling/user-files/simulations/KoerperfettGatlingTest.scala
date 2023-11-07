@@ -71,7 +71,7 @@ class KoerperfettGatlingTest extends Simulation {
             .post("/api/koerperfetts")
             .headers(headers_http_authenticated)
             .body(StringBody("""{
-                "privatoderfirma":null
+                "privatoderfirma":true
                 , "koerpergroesse":"0"
                 , "nackenumfang":"0"
                 , "bauchumfang":"0"
