@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { KoerperfettService } from 'app/entities/koerperfett/service/koerperfett.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import './bodyfat.component.scss';
+import dayjs from 'dayjs/esm';
 
 @Component({
   selector: 'jhi-bodyfat',
@@ -27,6 +28,7 @@ export class BodyfatComponent implements OnInit {
       age: ['', Validators.required],
       success: [''],
       koerperfettanteil: [''],
+      datumundZeit: [dayjs()],
     });
   }
 
