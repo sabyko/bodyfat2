@@ -106,4 +106,35 @@ public class KoerperfettServiceImpl implements KoerperfettService {
         log.debug("Request to delete Koerperfett : {}", id);
         koerperfettRepository.deleteById(id);
     }
+
+    public Koerperfett calculateKoerperfettanteil(Koerperfett koerperfett) {
+        if ("männlich".equalsIgnoreCase(koerperfett.getGeschlecht())) {
+            double koerperfettanteil =
+                86.01 *
+                Math.log10(koerperfett.getBauchumfang() - koerperfett.getNackenumfang()) -
+                70.041 *
+                Math.log10(koerperfett.getKoerpergroesse()) +
+                30.3;
+            koerperfett.setKoerperfettanteil(koerperfettanteil);
+        } else if ("weiblich".equalsIgnoreCase(koerperfett.getGeschlecht())) {
+            double koerperfettanteil =
+                163.205 *
+                Math.log10(koerperfett.getBauchumfang() + koerperfett.getHueftumfang() - koerperfett.getNackenumfang()) -
+                97.684 *
+                Math.log10(koerperfett.getKoerpergroesse()) -
+                104.912;
+            koerperfett.setKoerperfettanteil(koerperfettanteil);
+        }
+
+        // Fill the other values here, which may include null or empty values
+        // You might want to set the URL, success, errorMessage, etc.
+
+        return koerperfett;
+    }
+
+    @Override
+    public Koerperfett saveKoerperfett(Koerperfett koerperfett) {
+        log.debug("Request to save Koerperfett : {}", koerperfett);
+        return koerperfettRepository.save(koerperfett);
+    }
 }

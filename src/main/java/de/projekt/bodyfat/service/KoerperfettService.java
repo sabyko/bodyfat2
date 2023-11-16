@@ -55,4 +55,8 @@ public interface KoerperfettService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    Koerperfett calculateKoerperfettanteil(Koerperfett koerperfett);
+
+    Koerperfett saveKoerperfett(Koerperfett koerperfett);
 }

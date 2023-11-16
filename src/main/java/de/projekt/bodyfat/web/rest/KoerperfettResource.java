@@ -65,11 +65,13 @@ public class KoerperfettResource {
      */
     @PostMapping("/koerperfetts")
     public ResponseEntity<Koerperfett> createKoerperfett(@Valid @RequestBody Koerperfett koerperfett) throws URISyntaxException {
-        log.debug("REST request to save Koerperfett : {}", koerperfett);
+        log.info("REST request to save Koerperfett : {}", koerperfett);
+        System.out.println("");
         if (koerperfett.getId() != null) {
             throw new BadRequestAlertException("A new koerperfett cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Koerperfett result = koerperfettService.save(koerperfett);
+        Koerperfett updatedKoerperfett = koerperfettService.calculateKoerperfettanteil(koerperfett);
+        Koerperfett result = koerperfettService.save(updatedKoerperfett);
         return ResponseEntity
             .created(new URI("/api/koerperfetts/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))

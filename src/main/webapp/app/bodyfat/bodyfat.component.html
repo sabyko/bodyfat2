@@ -1,0 +1,155 @@
+<!-- Seite 1: Persönliche Daten -->
+<div *ngIf="!showMeasurementsPage" class="page-container" style="text-align: center">
+  <h1>Körperfettanteil berechnen mit Sabi</h1>
+  <div class="form-container">
+    <form [formGroup]="bodyfatForm">
+      <table style="margin: 0 auto">
+        <tr>
+          <td><label for="privatoderfirma">Privat oder Firma:</label></td>
+          <td>
+            <select id="privatoderfirma" name="privatoderfirma" formControlName="privatoderfirma" required class="rounded-input">
+              <option value="true">Privat</option>
+              <option value="false">Firma</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="vorundnachname">Vor- und Nachname:</label></td>
+          <td>
+            <input type="text" placeholder="Vor- und Nachname" id="vorundnachname" name="vorundnachname" class="rounded-input" />
+          </td>
+        </tr>
+        <tr>
+          <td><label for="strasse">Straße:</label></td>
+          <td>
+            <input type="text" placeholder="Straße" id="strasse" name="strasse" class="rounded-input" />
+          </td>
+        </tr>
+        <tr>
+          <td><label for="postleitzahlundort">Postleitzahl und Ort:</label></td>
+          <td>
+            <input type="text" placeholder="Postleitzahl und Ort" id="postleitzahlundort" name="postleitzahlundort" class="rounded-input" />
+          </td>
+        </tr>
+        <tr>
+          <td><label for="email">E-Mail:</label></td>
+          <td><input type="email" placeholder="E-Mail" id="email" name="email" class="rounded-input" /></td>
+        </tr>
+      </table>
+      <button type="button" class="next-button rounded-button" (click)="proceedToMeasurements()" data-cy="entityCreateButton">
+        Weiter
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Seite 2: Körpermaße -->
+<div *ngIf="showMeasurementsPage" class="page-container" [ngStyle]="{ 'text-align': 'center', margin: '20px auto' }">
+  <h1>Körperfettanteil berechnen mit Sabi</h1>
+  <div class="form-container, center">
+    <form [formGroup]="bodyfatForm">
+      <table style="margin: 0 auto">
+        <tr>
+          <td><label for="geschlecht">Geschlecht:</label></td>
+          <td>
+            <select id="geschlecht" name="geschlecht" formControlName="geschlecht" class="rounded-input">
+              <option value="männlich">Männlich</option>
+              <option value="weiblich">Weiblich</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="bauchumfang">Bauchumfang (cm):</label></td>
+          <td>
+            <input
+              type="number"
+              placeholder="Bauchumfang (cm)"
+              id="bauchumfang"
+              name="bauchumfang"
+              formControlName="bauchumfang"
+              step="5"
+              required
+              class="rounded-input"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td><label for="nackenumfang">Nackenumfang (cm):</label></td>
+          <td>
+            <input
+              type="number"
+              placeholder="Nackenumfang (cm)"
+              id="nackenumfang"
+              name="nackenumfang"
+              formControlName="nackenumfang"
+              step="5"
+              required
+              class="rounded-input"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td><label for="koerpergroesse">Körpergröße (cm):</label></td>
+          <td>
+            <input
+              type="number"
+              placeholder="Körpergröße (cm)"
+              id="koerpergroesse"
+              name="koerpergroesse"
+              formControlName="koerpergroesse"
+              step="1"
+              required
+              class="rounded-input"
+            />
+          </td>
+        </tr>
+        <tr *ngIf="bodyfatForm.get('geschlecht')?.value === 'weiblich'">
+          <td><label for="hueftumfang">Hüftumfang (cm):</label></td>
+          <td>
+            <input
+              type="number"
+              placeholder="Hüftumfang (cm)"
+              id="hueftumfang"
+              name="hueftumfang"
+              formControlName="hueftumfang"
+              step="1"
+              class="rounded-input"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td><label for="age">Alter:</label></td>
+          <td>
+            <input type="number" placeholder="Alter" id="age" name="age" formControlName="age" step="1" required class="rounded-input" />
+          </td>
+        </tr>
+      </table>
+      <button type="button" class="calculate-button rounded-button" (click)="calculateKoerperfettanteil()" data-cy="entityCreateButton">
+        Berechnen
+      </button>
+    </form>
+
+    <!-- Ergebnis und Buttons -->
+    <div *ngIf="koerperfettanteil !== undefined" class="result-container">
+      <h2>Ergebnis</h2>
+      <p>Körperfettanteil: {{ koerperfettanteil.toFixed(2) }} %</p>
+      <div class="bar">
+        <div class="bar-fill">
+          <p
+            [style.width.%]="koerperfettanteil"
+            [style.background-color]="getColorClass() === 'gut' ? 'green' : getColorClass() === 'medium' ? 'orange' : 'red'"
+          >
+            {{ getResultMessage() }}
+          </p>
+        </div>
+      </div>
+      <div *ngIf="success" class="buttons-container">
+        <!-- „Herunterladen“ und „Öffnen“, wenn createKoerperfett erfolgreich ist -->
+        <a href="{{ url }}" download>
+          <button class="download-button rounded-button">Download</button>
+        </a>
+        <button class="open-button rounded-button" (click)="openResult()">Open</button>
+      </div>
+    </div>
+  </div>
+</div>

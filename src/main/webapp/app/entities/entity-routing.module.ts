@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { BodyfatComponent } from 'app/bodyfat/bodyfat.component';
 
 @NgModule({
   imports: [
@@ -13,6 +14,10 @@ import { RouterModule } from '@angular/router';
         path: 'koerperfett-avarage',
         data: { pageTitle: 'bodyfatApp.koerperfettAvarage.home.title' },
         loadChildren: () => import('./koerperfett-avarage/koerperfett-avarage.module').then(m => m.KoerperfettAvarageModule),
+      },
+      {
+        path: 'bodyfat',
+        component: BodyfatComponent,
       },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
