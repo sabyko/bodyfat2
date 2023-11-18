@@ -6,9 +6,9 @@ import org.slf4j.LoggerFactory
 
 import scala.concurrent.duration._
 
-/**
- * Performance test for the Koerperfett entity.
- */
+// run the test mvnw gatling:test 
+// or mvn gatling:test -Dgatling.simulationClass=your.package.YourSimulationClass
+
 class KoerperfettGatlingTest extends Simulation {
 
     val context: LoggerContext = LoggerFactory.getILoggerFactory.asInstanceOf[LoggerContext]
