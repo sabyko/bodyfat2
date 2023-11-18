@@ -44,12 +44,6 @@ class KoerperfettGatlingTest extends Simulation {
     )
 
     val scn = scenario("Test the Koerperfett entity")
-        .exec(http("First unauthenticated request")
-        .get("/api/account")
-        .headers(headers_http)
-        .check(status.is(401))
-        ).exitHereIfFailed
-        .pause(10)
         .exec(http("Authentication")
         .post("/api/authenticate")
         .headers(headers_http_authentication)
@@ -72,17 +66,54 @@ class KoerperfettGatlingTest extends Simulation {
             .headers(headers_http_authenticated)
             .body(StringBody("""{
                 "privatoderfirma":true
-                , "koerpergroesse":"0"
-                , "nackenumfang":"0"
-                , "bauchumfang":"0"
+                , "koerpergroesse":"180"
+                , "nackenumfang":"40"
+                , "bauchumfang":"100"
                 , "hueftumfang":"0"
-                , "geschlecht":"SAMPLE_TEXT"
-                , "age":"0"
-                , "koerperfettanteil":"0"
+                , "geschlecht":"männlich"
+                , "age":"42"
+                , "koerperfettanteil":""
                 , "datumundZeit":"2020-01-01T00:00:00.000Z"
-                , "url":"SAMPLE_TEXT"
-                , "success":null
-                , "errorMessage":"SAMPLE_TEXT"
+                , "url":"TestM.de"
+                , "success":true
+                , "errorMessage":null
+                }""")).asJson
+            .check(status.is(201))
+            .check(headerRegex("Location", "(.*)").saveAs("new_koerperfett_url"))).exitHereIfFailed
+            .pause(10)
+            .repeat(5) {
+                exec(http("Get created koerperfett")
+                .get("${new_koerperfett_url}")
+                .headers(headers_http_authenticated))
+                .pause(10)
+            }
+            .exec(http("Delete created koerperfett")
+            .delete("${new_koerperfett_url}")
+            .headers(headers_http_authenticated))
+            .pause(10)
+        }
+        .repeat(2) {
+            exec(http("Get all koerperfetts")
+            .get("/api/koerperfetts")
+            .headers(headers_http_authenticated)
+            .check(status.is(200)))
+            .pause(10 seconds, 20 seconds)
+            .exec(http("Create new koerperfett")
+            .post("/api/koerperfetts")
+            .headers(headers_http_authenticated)
+            .body(StringBody("""{
+                "privatoderfirma":true
+                , "koerpergroesse":"160"
+                , "nackenumfang":"30"
+                , "bauchumfang":"80"
+                , "hueftumfang":"80"
+                , "geschlecht":"weiblich"
+                , "age":"25"
+                , "koerperfettanteil":""
+                , "datumundZeit":"2020-01-01T00:00:00.000Z"
+                , "url":"TestW.de"
+                , "success":true
+                , "errorMessage":null
                 }""")).asJson
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_koerperfett_url"))).exitHereIfFailed
