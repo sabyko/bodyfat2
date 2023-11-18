@@ -12,6 +12,17 @@ node {
             }
         }
     }
+
+    stage('check old h2') {
+        script {
+            if (fileExists('/opt/tomcat/webapps/opt')) {
+                echo "old /opt/tomcat/webapps/opt found!"				
+				sh "rm /opt/tomcat/webapps/opt" 
+            } else {
+				echo "no opt folder found!"
+            }
+        }
+    }
     
     stage('checkout') {
         checkout scm
@@ -38,30 +49,31 @@ node {
     }
     stage('backend tests') {
         try {
-//            sh "./mvnw -ntp verify -P-webapp"            
+            sh "./mvnw -ntp verify -P-webapp"
         } catch(err) {
             throw err
         } finally {
-//            junit '**/target/surefire-reports/TEST-*.xml,**/target/failsafe-reports/TEST-*.xml'
+            junit '**/target/surefire-reports/TEST-*.xml,**/target/failsafe-reports/TEST-*.xml'
         }
     }
 
     stage('frontend tests') {
         try {
-//            sh "./mvnw -ntp com.github.eirslett:frontend-maven-plugin:npm -Dfrontend.npm.arguments='run test'"
+            sh "./mvnw -ntp com.github.eirslett:frontend-maven-plugin:npm -Dfrontend.npm.arguments='run test'"
         } catch(err) {
             throw err
         } finally {
-//            junit '**/target/test-results/TESTS-results-jest.xml'
+            junit '**/target/test-results/TESTS-results-jest.xml'
         }
     }
 
     stage('packaging') {
-        sh "./mvnw -ntp verify -P-webapp -Ptest -DskipTests"
-        archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
+        sh "./mvnw -ntp verify -P-webapp -Pdev -DskipTests"
+        archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
     }
-    
-    stage('copy war') {
-        sh "cp ./target/bodyfat-0.0.1-SNAPSHOT.war /opt/tomcat/webapps/ROOT.war"
+    stage('quality analysis') {
+        withSonarQubeEnv('sonar') {
+            sh "./mvnw -ntp initialize sonar:sonar"
+        }
     }
 }
