@@ -39,11 +39,11 @@ node {
 
     stage('gatling tests') {
         try {
-            sh "./mvnw gatling:test'"
+           sh "./mvnw gatling:test"
         } catch(err) {
-            throw err
+           throw err
         } finally {
-           gatlingArchive() '**/target/test-results/TESTS-results-gatling.xml'
+           gatlingArchive '**/target/gatling/results'
         }
     }
 
