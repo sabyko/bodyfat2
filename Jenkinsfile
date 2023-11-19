@@ -63,7 +63,7 @@ node {
     }
 
     stage('gatling tests') {
-        try {
+        steps {
             sh "./mvnw gatling:test"
         } 
         post {
