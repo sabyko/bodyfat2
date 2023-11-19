@@ -7,7 +7,14 @@
         <tr>
           <td><label for="privatoderfirma">Privat oder Firma:</label></td>
           <td>
-            <select id="privatoderfirma" name="privatoderfirma" formControlName="privatoderfirma" required class="rounded-input">
+            <select
+              id="privatoderfirma"
+              name="privatoderfirma"
+              formControlName="privatoderfirma"
+              data-cy="privatoderfirma"
+              required
+              class="rounded-input"
+            >
               <option value="true">Privat</option>
               <option value="false">Firma</option>
             </select>
@@ -16,24 +23,38 @@
         <tr>
           <td><label for="vorundnachname">Vor- und Nachname:</label></td>
           <td>
-            <input type="text" placeholder="Vor- und Nachname" id="vorundnachname" name="vorundnachname" class="rounded-input" />
+            <input
+              type="text"
+              placeholder="Vor- und Nachname"
+              id="vorundnachname"
+              name="vorundnachname"
+              data-cy="vorundnachname"
+              class="rounded-input"
+            />
           </td>
         </tr>
         <tr>
           <td><label for="strasse">Straße:</label></td>
           <td>
-            <input type="text" placeholder="Straße" id="strasse" name="strasse" class="rounded-input" />
+            <input type="text" placeholder="Straße" id="strasse" name="strasse" data-cy="strasse" class="rounded-input" />
           </td>
         </tr>
         <tr>
           <td><label for="postleitzahlundort">Postleitzahl und Ort:</label></td>
           <td>
-            <input type="text" placeholder="Postleitzahl und Ort" id="postleitzahlundort" name="postleitzahlundort" class="rounded-input" />
+            <input
+              type="text"
+              placeholder="Postleitzahl und Ort"
+              id="postleitzahlundort"
+              name="postleitzahlundort"
+              data-cy="postleitzahlundort"
+              class="rounded-input"
+            />
           </td>
         </tr>
         <tr>
           <td><label for="email">E-Mail:</label></td>
-          <td><input type="email" placeholder="E-Mail" id="email" name="email" class="rounded-input" /></td>
+          <td><input type="email" placeholder="E-Mail" id="email" name="email" data-cy="email" class="rounded-input" /></td>
         </tr>
       </table>
       <button type="button" class="next-button rounded-button" (click)="proceedToMeasurements()" data-cy="entityCreateButton">
@@ -52,7 +73,7 @@
         <tr>
           <td><label for="geschlecht">Geschlecht:</label></td>
           <td>
-            <select id="geschlecht" name="geschlecht" formControlName="geschlecht" class="rounded-input">
+            <select id="geschlecht" name="geschlecht" formControlName="geschlecht" data-cy="geschlecht" class="rounded-input">
               <option value="männlich">Männlich</option>
               <option value="weiblich">Weiblich</option>
             </select>
@@ -69,6 +90,7 @@
               formControlName="bauchumfang"
               step="5"
               required
+              data-cy="bauchumfang"
               class="rounded-input"
             />
           </td>
@@ -84,6 +106,7 @@
               formControlName="nackenumfang"
               step="5"
               required
+              data-cy="nackenumfang"
               class="rounded-input"
             />
           </td>
@@ -99,6 +122,7 @@
               formControlName="koerpergroesse"
               step="1"
               required
+              data-cy="koerpergroesse"
               class="rounded-input"
             />
           </td>
@@ -113,6 +137,7 @@
               name="hueftumfang"
               formControlName="hueftumfang"
               step="1"
+              data-cy="hueftumfang"
               class="rounded-input"
             />
           </td>
@@ -120,7 +145,17 @@
         <tr>
           <td><label for="age">Alter:</label></td>
           <td>
-            <input type="number" placeholder="Alter" id="age" name="age" formControlName="age" step="1" required class="rounded-input" />
+            <input
+              type="number"
+              placeholder="Alter"
+              id="age"
+              name="age"
+              formControlName="age"
+              step="1"
+              required
+              data-cy="age"
+              class="rounded-input"
+            />
           </td>
         </tr>
       </table>

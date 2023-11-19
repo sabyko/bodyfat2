@@ -12,17 +12,6 @@ node {
             }
         }
     }
-
-    stage('check old h2') {
-        script {
-            if (fileExists('/opt/tomcat/webapps/opt')) {
-                echo "old /opt/tomcat/webapps/opt found!"				
-				sh "rm /opt/tomcat/webapps/opt" 
-            } else {
-				echo "no opt folder found!"
-            }
-        }
-    }
     
     stage('checkout') {
         checkout scm
@@ -68,7 +57,7 @@ node {
     }
 
     stage('packaging') {
-        sh "./mvnw -ntp verify -P-webapp -Pdev -DskipTests"
+        sh "./mvnw -ntp verify -P-webapp -Pprod -DskipTests"
         archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
     }
 
@@ -76,9 +65,9 @@ node {
         sh "cp ./target/bodyfat-0.0.1-SNAPSHOT.war /opt/tomcat/webapps/ROOT.war"
     }
 
-    stage('quality analysis') {
-        withSonarQubeEnv('sonar') {
-            sh "./mvnw -ntp initialize sonar:sonar"
-        }
+//    stage('quality analysis') {
+//        withSonarQubeEnv('sonar') {
+//            sh "./mvnw -ntp initialize sonar:sonar"
+//        }
     }
 }
