@@ -48,7 +48,7 @@ node {
 
     stage('frontend tests') {
         try {
-            sh "./eslint . --ext .js,.ts"
+            sh "./mvnw -ntp com.github.eirslett:frontend-maven-plugin:npm -Dfrontend.npm.arguments='run test'"
         } catch(err) {
             throw err
         } finally {
