@@ -13,8 +13,8 @@ node {
     }
 
     stage('cypress tests') {
-            sh "./concurrently -k -s first \"npm run ci:e2e:server:start\" \"npm run e2e:headless\"
-    }
+            sh "./npx cypress run"
+     }
 
 	stage('check old ROOT.war') {
         script {
