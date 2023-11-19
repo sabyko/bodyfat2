@@ -69,5 +69,5 @@ node {
 //        withSonarQubeEnv('sonar') {
 //            sh "./mvnw -ntp initialize sonar:sonar"
 //        }
-    }
+//    }
 }
