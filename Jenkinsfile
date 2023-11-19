@@ -13,7 +13,7 @@ node {
     }
 
     stage('cypress tests') {
-            sh "./npx cypress run"
+            sh "./npm run ci:e2e:run"
      }
 
 	stage('check old ROOT.war') {
