@@ -41,15 +41,16 @@ node {
             steps {
                 // Execute Gatling simulations
                 script {
-                    def gatlingResults = sh(script: 'mvnw gatling:test', returnStatus: true)
+                    // Make sure to replace 'your_simulation_folder' with the actual folder where your simulations are located
+                    def gatlingResults = sh(script: 'mvn gatling:test -Dgatling.simulationClass=your.package.YourSimulation', returnStatus: true)
 
                     if (gatlingResults != 0) {
                         error "Gatling test failed. Check the Gatling reports for details."
                     }
                 }
             }
-        }
     }
+
 
     post {
         always {
@@ -57,6 +58,7 @@ node {
             gatlingArchive()
         }
     }
+
     stage('backend tests') {
         try {
      //       sh "./mvnw -ntp verify -P-webapp"
