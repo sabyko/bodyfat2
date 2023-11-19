@@ -42,7 +42,7 @@ node {
         } catch(err) {
             throw err
         } finally {
-            junit '**/target/surefire-reports/TEST-*.xml,**/target/failsafe-reports/TEST-*.xml'
+     //       junit '**/target/surefire-reports/TEST-*.xml,**/target/failsafe-reports/TEST-*.xml'
         }
     }
 
@@ -52,7 +52,7 @@ node {
         } catch(err) {
             throw err
         } finally {
-           junit '**/target/test-results/TESTS-results-jest.xml'
+    //       junit '**/target/test-results/TESTS-results-jest.xml'
         }
     }
 
