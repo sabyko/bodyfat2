@@ -37,25 +37,13 @@ node {
         sh "./mvnw -ntp com.github.eirslett:frontend-maven-plugin:npm"
     }
 
-    stage('Gatling Test') {
-            steps {
-                // Execute Gatling simulations
-                script {
-                    // Make sure to replace 'your_simulation_folder' with the actual folder where your simulations are located
-                    def gatlingResults = sh(script: 'mvn gatling:test -Dgatling.simulationClass=your.package.YourSimulation', returnStatus: true)
-
-                    if (gatlingResults != 0) {
-                        error "Gatling test failed. Check the Gatling reports for details."
-                    }
-                }
-            }
-    }
-
-
-    post {
-        always {
-            // Archive Gatling reports
-            gatlingArchive()
+    stage('gatling tests') {
+        try {
+            sh "./mvnw gatling:test'"
+        } catch(err) {
+            throw err
+        } finally {
+           gatlingArchive() '**/target/test-results/TESTS-results-gatling.xml'
         }
     }
 
