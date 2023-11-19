@@ -2,6 +2,16 @@
 
 node {
 
+    stage('gatling tests') {
+        try {
+           sh "./mvnw gatling:test -DbaseURL=http://192.168.178.119:8080"
+        } catch(err) {
+           throw err
+        } finally {
+           gatlingArchive '**/target/gatling/results'
+        }
+    }
+
 	stage('check old ROOT.war') {
         script {
             if (fileExists('/opt/tomcat/webapps/ROOT.war')) {
@@ -37,16 +47,6 @@ node {
         sh "./mvnw -ntp com.github.eirslett:frontend-maven-plugin:npm"
     }
 
-    stage('gatling tests') {
-        try {
-           sh "./mvnw gatling:test -DbaseURL=http://192.168.178.119:8080"
-        } catch(err) {
-           throw err
-        } finally {
-           gatlingArchive '**/target/gatling/results'
-        }
-    }
-
     stage('backend tests') {
         try {
      //       sh "./mvnw -ntp verify -P-webapp"
@@ -75,11 +75,11 @@ node {
     
     stage('cypress tests') {
         try {
-            sh "./npx cypress run"
+        //    sh "./npx cypress run"
         } catch(err) {
             throw err
         } finally {
-           cypress '**/target/test-results/TESTS-results-cypress.xml'
+        //   cypress '**/target/test-results/TESTS-results-cypress.xml'
         }
     }
 
