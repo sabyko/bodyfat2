@@ -8,7 +8,7 @@ node {
         } catch(err) {
            throw err
         } finally {
-           gatlingArchive '**/target/gatling/results'
+           gatlingArchive '**/target/test-results/'
         }
     }
 
