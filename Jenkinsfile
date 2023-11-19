@@ -56,6 +56,12 @@ node {
         }
     }
 
+
+    stage('packaging') {
+        sh "./mvnw -ntp verify -P-webapp -Pprod -DskipTests"
+        archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
+    }
+
     stage('gatling tests') {
         try {
             sh "./mvnw gatling:test"
@@ -75,11 +81,6 @@ node {
         } finally {
            cypress '**/target/test-results/TESTS-results-cypress.xml'
         }
-    }
-
-    stage('packaging') {
-        sh "./mvnw -ntp verify -P-webapp -Pprod -DskipTests"
-        archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
     }
 
     stage('copy war') {
