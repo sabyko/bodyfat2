@@ -4,12 +4,16 @@ node {
 
     stage('gatling tests') {
         try {
-           sh "./mvnw gatling:test -DbaseURL=http://192.168.178.119:8080"
+    //      sh "./mvnw gatling:test -DbaseURL=http://192.168.178.119:8080"
         } catch(err) {
            throw err
         } finally {
-           gatlingArchive()
+    //       gatlingArchive()
         }
+    }
+
+    stage('cypress tests') {
+            sh "./npx cypress run"
     }
 
 	stage('check old ROOT.war') {
@@ -73,15 +77,6 @@ node {
         archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
     }
     
-    stage('cypress tests') {
-        try {
-        //    sh "./npx cypress run"
-        } catch(err) {
-            throw err
-        } finally {
-        //   cypress '**/target/test-results/TESTS-results-cypress.xml'
-        }
-    }
 
     stage('copy war') {
         sh "cp ./target/bodyfat-0.0.1-SNAPSHOT.war /opt/tomcat/webapps/ROOT.war"
