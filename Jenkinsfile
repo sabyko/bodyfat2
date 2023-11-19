@@ -36,6 +36,27 @@ node {
     stage('npm install') {
         sh "./mvnw -ntp com.github.eirslett:frontend-maven-plugin:npm"
     }
+
+    stage('Gatling Test') {
+            steps {
+                // Execute Gatling simulations
+                script {
+                    def gatlingResults = sh(script: 'mvnw gatling:test', returnStatus: true)
+
+                    if (gatlingResults != 0) {
+                        error "Gatling test failed. Check the Gatling reports for details."
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            // Archive Gatling reports
+            gatlingArchive()
+        }
+    }
     stage('backend tests') {
         try {
      //       sh "./mvnw -ntp verify -P-webapp"
@@ -60,17 +81,6 @@ node {
     stage('packaging') {
         sh "./mvnw -ntp verify -P-webapp -Pprod -DskipTests"
         archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
-    }
-
-    stage('gatling tests') {
-        steps {
-            sh "./mvnw gatling:test"
-        } 
-        post {
-            always {
-                gatlingArchive()
-            }
-        }
     }
     
     stage('cypress tests') {
