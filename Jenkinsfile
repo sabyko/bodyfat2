@@ -3,11 +3,12 @@
 node {
 
     stage('gatling tests') {
-        steps {
-            script {
-               sh "./mvnw gatling:test -DbaseURL=http://192.168.178.119:8080"
-               gatlingArchive '**/target/gatling/results'
-            }
+        try {
+           sh "./mvnw gatling:test -DbaseURL=http://192.168.178.119:8080"
+        } catch(err) {
+           throw err
+        } finally {
+           gatlingArchive()
         }
     }
 
