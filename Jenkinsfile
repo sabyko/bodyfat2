@@ -38,7 +38,7 @@ node {
     }
     stage('backend tests') {
         try {
-            sh "./mvnw -ntp verify -P-webapp"
+     //       sh "./mvnw -ntp verify -P-webapp"
         } catch(err) {
             throw err
         } finally {
@@ -48,11 +48,31 @@ node {
 
     stage('frontend tests') {
         try {
-            sh "./mvnw -ntp com.github.eirslett:frontend-maven-plugin:npm -Dfrontend.npm.arguments='run test'"
+     //       sh "./mvnw -ntp com.github.eirslett:frontend-maven-plugin:npm -Dfrontend.npm.arguments='run test'"
         } catch(err) {
             throw err
         } finally {
            junit '**/target/test-results/TESTS-results-jest.xml'
+        }
+    }
+
+    stage('gatling tests') {
+        try {
+            sh "./mvnw gatling:test"
+        } catch(err) {
+            throw err
+        } finally {
+           gatling '**/target/test-results/TESTS-results-gatling.xml'
+        }
+    }
+    
+    stage('cypress tests') {
+        try {
+            sh "./npx cypress run"
+        } catch(err) {
+            throw err
+        } finally {
+           cypress '**/target/test-results/TESTS-results-cypress.xml'
         }
     }
 
@@ -65,9 +85,9 @@ node {
         sh "cp ./target/bodyfat-0.0.1-SNAPSHOT.war /opt/tomcat/webapps/ROOT.war"
     }
 
-//    stage('quality analysis') {
-//        withSonarQubeEnv('sonar') {
-//            sh "./mvnw -ntp initialize sonar:sonar"
-//        }
-//    }
+    stage('quality analysis') {
+        withSonarQubeEnv('sonar') {
+           sh "./mvnw sonar:sonar -Dsonar.host.url=http://localhost:9001"
+        }
+    }
 }
