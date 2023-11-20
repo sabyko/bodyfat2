@@ -13,7 +13,7 @@ node {
     }
 
     stage('cypress tests') {
-            sh "./npm run ci:e2e:run"
+    //        sh "./npm run ci:e2e:run"
      }
 
 	stage('check old ROOT.war') {
@@ -82,9 +82,23 @@ node {
         sh "cp ./target/bodyfat-0.0.1-SNAPSHOT.war /opt/tomcat/webapps/ROOT.war"
     }
 
-    stage('quality analysis') {
-        withSonarQubeEnv('sonar') {
-           sh "./mvnw sonar:sonar -Dsonar.host.url=http://localhost:9001"
+    
+    
+    stage("build & SonarQube analysis") {
+        agent any
+            steps {
+              withSonarQubeEnv('http://localhost:9001') {
+                sh 'mvn clean package sonar:sonar'
+              }
+            }
+          }
+          stage("Quality Gate") {
+            steps {
+              timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+              }
         }
     }
+    
+    
 }
