@@ -84,20 +84,8 @@ node {
 
     
     
-    stage("build & SonarQube analysis") {
-        agent any
-            steps {
-              withSonarQubeEnv('http://localhost:9001') {
-                sh 'mvn clean package sonar:sonar'
-              }
-            }
-          }
-          stage("Quality Gate") {
-            steps {
-              timeout(time: 1, unit: 'HOURS') {
-                waitForQualityGate abortPipeline: true
-              }
-        }
+    stage('npm install') {
+        sh "./mvnw sonar:sonar -Dsonar.host.url=http://localhost:9001"
     }
     
     
