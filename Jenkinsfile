@@ -3,14 +3,25 @@
 node {
 
     stage('Sonar Test') {
-        try {
-            sh "./mvnw sonar:sonar -Dsonar.host.url=http://192.168.178.119:9001"
-        } catch(err) {
-            throw err
-        } finally {
-            withSonarQubeEnv '**/target/surefire-reports/TEST-*.xml,**/target/failsafe-reports/TEST-*.xml'
+            def sonarOutput = sh ("./mvnw sonar:sonar -Dsonar.host.url=http://192.168.178.119:9001", returnStdout: true).trim()
+                if (sonarOutput.contains('ANALYSIS SUCCESSFUL')) {
+                        
+                    echo "SonarQube analysis was successful!"
+
+                        // Extract and save the SonarQube dashboard link
+                        def dashboardLink = sonarOutput =~ /ANALYSIS SUCCESSFUL, you can find the results at: (.+)/
+                        if (dashboardLink) {
+                            def urlToSave = dashboardLink[0][1]
+                            echo "SonarQube Dashboard Link: ${urlToSave}"
+
+                            // Save the URL to a file
+                            writeFile file: DASHBOARD_FILE, text: urlToSave
+                        }
+                    } else {
+                        error "SonarQube analysis failed! Check the build logs for more details."
         }
     }
+        
 
     stage('gatling tests') {
         try {
