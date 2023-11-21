@@ -3,10 +3,13 @@
 node {
 
     stage('Sonar Test') {
-        steps { 
-            withSonarQubeEnv(installationName: 'sonar')
-        sh "./mvnw sonar:sonar -Dsonar.host.url=http://192.168.178.119:9001"
-    }
+        try {
+            sh "./mvnw sonar:sonar -Dsonar.host.url=http://192.168.178.119:9001"
+        } catch(err) {
+            throw err
+        } finally {
+            withSonarQubeEnv '**/target/surefire-reports/TEST-*.xml,**/target/failsafe-reports/TEST-*.xml'
+        }
     }
 
     stage('gatling tests') {
