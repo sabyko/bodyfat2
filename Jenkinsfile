@@ -2,6 +2,13 @@
 
 node {
 
+    stage('Sonar Test') {
+        steps { 
+            withSonarQubeEnv(installationName: 'sonar')
+        sh "./mvnw sonar:sonar -Dsonar.host.url=http://localhost:9001"
+    }
+    }
+
     stage('gatling tests') {
         try {
     //      sh "./mvnw gatling:test -DbaseURL=http://192.168.178.119:8080"
@@ -83,10 +90,18 @@ node {
     }
 
     
-    
-    stage('npm install') {
-        sh "./mvnw sonar:sonar -Dsonar.host.url=http://localhost:9001"
+    post {
+    always {
+        cleanWs()
     }
-    
-    
+    success {
+        slackSend(color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+        bitbucketStatusNotify(buildState: 'SUCCESSFUL')
+    }
+
+    failure {
+        slackSend(color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+        bitbucketStatusNotify(buildState: 'FAILED')
+    }
+}
 }
