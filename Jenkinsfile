@@ -5,7 +5,7 @@ node {
     stage('Sonar Test') {
         steps { 
             withSonarQubeEnv(installationName: 'sonar')
-        sh "./mvnw sonar:sonar -Dsonar.host.url=http://localhost:9001"
+        sh "./mvnw sonar:sonar -Dsonar.host.url=http://192.168.178.119:9001"
     }
     }
 
