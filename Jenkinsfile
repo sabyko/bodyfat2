@@ -3,25 +3,15 @@
 node {
 
     stage('Sonar Test') {
-            def sonarOutput = sh ("./mvnw sonar:sonar -Dsonar.host.url=http://192.168.178.119:9001", returnStdout: true).trim()
-                if (sonarOutput.contains('ANALYSIS SUCCESSFUL')) {
-                        
-                    echo "SonarQube analysis was successful!"
-
-                        // Extract and save the SonarQube dashboard link
-                        def dashboardLink = sonarOutput =~ /ANALYSIS SUCCESSFUL, you can find the results at: (.+)/
-                        if (dashboardLink) {
-                            def urlToSave = dashboardLink[0][1]
-                            echo "SonarQube Dashboard Link: ${urlToSave}"
-
-                            // Save the URL to a file
-                            writeFile file: DASHBOARD_FILE, text: urlToSave
-                        }
-                    } else {
-                        error "SonarQube analysis failed! Check the build logs for more details."
+        try {
+            sh "./mvnw sonar:sonar -Dsonar.host.url=http://192.168.178.119:9001"
+        } catch(err) {
+            currentBuild.result = 'BUILD FAILED'
+                        error("SonarQube analysis failed: ${e.message}")
+        } finally {
+            sonar '**/target/sonarqube-reports/SonarTest-*.xml'
         }
     }
-        
 
     stage('gatling tests') {
         try {
