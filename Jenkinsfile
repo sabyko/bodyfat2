@@ -9,7 +9,7 @@ node {
             currentBuild.result = 'BUILD FAILED'
                         error("SonarQube analysis failed: ${e.message}")
         } finally {
-            sonar '**/target/sonarqube-reports/SonarTest-*.xml'
+            save '**/target/sonarqube-reports/SonarTest-*.xml'
         }
     }
 
