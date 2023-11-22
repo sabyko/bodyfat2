@@ -70,6 +70,7 @@ node {
 
     stage('cypress tests') {
     //        sh "./npm run ci:e2e:run"
+          sleep 60 
      }
 
 
